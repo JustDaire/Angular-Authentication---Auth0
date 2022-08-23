@@ -1,27 +1,22 @@
-# AngularAuthenticationAuth0
+# Angular Authentication: Auth0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+A simple example that shows how to use [Angular](https://angular.io/) with [Auth0](https://auth0.com)
 
-## Development server
+## Setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* Create an account at Auth0 (https://auth0.com)
+* Add your endpoints to your client's allowed urls like this:
+  ![auth-callbacks](src/assets/img.png)
 
-## Code scaffolding
+* Copy the file `.environment.example` in the environments folder, rename it as `.environment` and add your Auth0 keys
+ 
+## Running Locally
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+git clone https://github.com/nuxt/example-auth0.git
+cd example-auth0
+npm install
+ng serve
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
