@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  AUTH0_CLIENT_ID: "pbWYl8vB67EWIQYQcrxndQooeh05Mg8o",
-  AUTH0_DOMAIN: "dev-mjy2t837.us.auth0.com"
+  AUTH0_CLIENT_ID: "",
+  AUTH0_DOMAIN: ""
 };
 
 /*

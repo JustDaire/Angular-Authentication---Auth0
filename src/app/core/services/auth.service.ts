@@ -1,26 +1,21 @@
 import {Injectable} from '@angular/core';
 import * as auth0 from 'auth0-js';
-import createAuth0Client from '@auth0/auth0-spa-js';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // auth0: any;
-  requestedScopes: string = 'openid profile read:timesheets create:timesheets';
+  requestedScopes: string = 'openid profile email user_metadata read:timesheets create:timesheets';
 
   auth0 = new auth0.WebAuth({
-    clientID: 'pbWYl8vB67EWIQYQcrxndQooeh05Mg8o',
-    domain: 'dev-mjy2t837.us.auth0.com',
+    clientID: environment.AUTH0_CLIENT_ID,
+    domain: environment.AUTH0_DOMAIN,
     responseType: 'token id_token',
-    audience: 'https://dev-mjy2t837.us.auth0.com/api/v2/',
-    // audience: 'https://handheld.eu.auth0.com/userinfo',
+    audience: '',
     redirectUri: 'http://localhost:4200',
-    // scope: 'openid email user_metadata'
     scope: this.requestedScopes
   });
-
-  // https://auth0.com/docs/get-started/apis/scopes
 
   constructor() {
   }
@@ -34,18 +29,17 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
-        this.setSession(authResult);
+        this.setSession({authResult: authResult});
         // this.router.navigate(['/home']);
       } else if (err) {
         // this.router.navigate(['/home']);
         console.error(err);
-        alert('Error: <%= "${err.error}" %>. Check the console for further details.');
+        alert(`Error: "${err.error}". Check the console for further details.`);
       }
     });
   }
 
-  // @ts-ignore
-  private setSession(authResult): void {
+  private setSession({authResult}: { authResult: any }): void {
     // Set the time that the Access Token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
 
